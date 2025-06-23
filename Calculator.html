@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Калькулятор</title>
+</head>
+<body>
+  <h2>Введите X:</h2>
+  <input type="number" id="inputX" placeholder="Введите X">
+  <button onclick="calculate()">Посчитать</button>
+
+  <h3>Результат: <span id="result">-</span></h3>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    // Формула: к примеру, Y = 2 * X + 5
+    function calculate() {
+      const x = parseFloat(document.getElementById('inputX').value);
+      if (isNaN(x)) return alert("Введите корректное число");
+      const y = 2 * x + 5; 
+      document.getElementById('result').innerText = y;
+    }
+  </script>
+</body>
+</html>
