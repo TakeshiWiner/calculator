@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -19,6 +18,7 @@
         button {
             margin: 10px;
             padding: 10px 20px;
+            font-size: 16px;
         }
         #formContainer {
             margin-top: 20px;
@@ -27,6 +27,7 @@
             margin: 5px;
             padding: 5px;
             width: 80%;
+            font-size: 16px;
         }
         #result {
             margin-top: 15px;
@@ -35,6 +36,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <h1>Калькулятор</h1>
@@ -47,6 +49,8 @@
     <div id="result"></div>
 
     <script>
+        Telegram.WebApp.ready();
+
         function showForm(type) {
             const container = document.getElementById('formContainer');
             const result = document.getElementById('result');
@@ -65,11 +69,11 @@
                     <button onclick="calculateDamageByArmor()">Вычислить</button>
                 `;
             } else if (type === 3) {
-    container.innerHTML = `
-        <h3>Урон по % защиты</h3>
-        Процент защиты (X, от 0 до 100%): <input type="number" id="percent"><br>
-        Атака (Z): <input type="number" id="attack"><br>
-        <button onclick="calculateDamageByPercent()">Вычислить</button>
+                container.innerHTML = `
+                    <h3>Урон по % защиты</h3>
+                    Процент защиты (X, от 0 до 100%): <input type="number" id="percent"><br>
+                    Атака (Z): <input type="number" id="attack"><br>
+                    <button onclick="calculateDamageByPercent()">Вычислить</button>
                 `;
             }
         }
@@ -90,14 +94,13 @@
         }
 
         function calculateDamageByPercent() {
-    const x = parseFloat(document.getElementById('percent').value);
-    const z = parseFloat(document.getElementById('attack').value);
-    if (isNaN(x) || isNaN(z) || x < 0 || x > 100 || z < 0) return alert("Введите корректные значения");
-    const percentFactor = x / 100;  // Приводим проценты к значению от 0 до 1
-    const y = z * (1 - percentFactor);
-    document.getElementById('result').innerText = `Урон: ${y.toFixed(2)}`;
+            const x = parseFloat(document.getElementById('percent').value);
+            const z = parseFloat(document.getElementById('attack').value);
+            if (isNaN(x) || isNaN(z) || x < 0 || x > 100 || z < 0) return alert("Введите корректные значения");
+            const percentFactor = x / 100;
+            const y = z * (1 - percentFactor);
+            document.getElementById('result').innerText = `Урон: ${y.toFixed(2)}`;
         }
-
     </script>
 
 </body>
