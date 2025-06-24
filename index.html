@@ -62,11 +62,11 @@
                     <button onclick="calculateDamageByArmor()">Вычислить</button>
                 `;
             } else if (type === 3) {
-                container.innerHTML = `
-                    <h3>Урон по % защиты</h3>
-                    Процент защиты (X, от 0 до 1): <input type="number" id="percent"><br>
-                    Атака (Z): <input type="number" id="attack"><br>
-                    <button onclick="calculateDamageByPercent()">Вычислить</button>
+    container.innerHTML = `
+        <h3>Урон по % защиты</h3>
+        Процент защиты (X, от 0 до 100%): <input type="number" id="percent"><br>
+        Атака (Z): <input type="number" id="attack"><br>
+        <button onclick="calculateDamageByPercent()">Вычислить</button>
                 `;
             }
         }
@@ -87,12 +87,14 @@
         }
 
         function calculateDamageByPercent() {
-            const x = parseFloat(document.getElementById('percent').value);
-            const z = parseFloat(document.getElementById('attack').value);
-            if (isNaN(x) || isNaN(z) || x < 0 || x > 1 || z < 0) return alert("Введите корректные значения");
-            const y = z * (1 - x);
-            document.getElementById('result').innerText = `Урон: ${y.toFixed(2)}`;
+    const x = parseFloat(document.getElementById('percent').value);
+    const z = parseFloat(document.getElementById('attack').value);
+    if (isNaN(x) || isNaN(z) || x < 0 || x > 100 || z < 0) return alert("Введите корректные значения");
+    const percentFactor = x / 100;  // Приводим проценты к значению от 0 до 1
+    const y = z * (1 - percentFactor);
+    document.getElementById('result').innerText = `Урон: ${y.toFixed(2)}`;
         }
+
     </script>
 
 </body>
