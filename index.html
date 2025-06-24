@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+</head>
+<body>
+    <h2>Введите X:</h2>
+    <input type="number" id="inputX" placeholder="Введите X">
+    <button onclick="calculate()">Посчитать</button>
+
+    <h3>Результат: <span id="result">-</span></h3>
+
+    <script>
+        function calculate() {
+            const x = parseFloat(document.getElementById('inputX').value);
+            if (isNaN(x)) return alert("Введите число");
+            const y = 2 * x + 5;  // Пример формулы
+            document.getElementById('result').innerText = y;
+        }
+    </script>
+</body>
+</html>
